@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Django blog</title>
+    </head>
+    <body>
+        <header>
+            <p style="text-align:left;">
+                <h1><a href="{% url 'home' %}">Django blog</a></h1>
+            </p>
+           <p style="text-align:right;">
+                <a href = "{% url 'post_new' %}">+ New Blog Post </a>
+            </p>
+        </header>
+        {%if user.is_authenticated%}
+            <p> Hi {{user.username}} ! </p>
+            <p style="text-align:right;"> <a href="{%url 'logout' %}"> Log out </a> </p>
+        {%else %}
+            <p> You are not logged in.</p>
+            <p style="text-align:right;"><a href="{%url 'login' %}"> Log In </a></p>
+            <p style="text-align:right;"><a href="{%url 'signup'%}"> Sign Up </a></p>
+        {%endif%}
+        <div>
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </body>
+</html>
